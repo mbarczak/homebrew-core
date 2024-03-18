@@ -37,6 +37,15 @@ class MidnightCommander < Formula
 
   conflicts_with "minio-mc", because: "both install an `mc` binary"
 
+  patch do
+    on_macos do
+      on_arm do
+        url "https://raw.githubusercontent.com/mbarczak/formula-patches/0e5c182e1e320b4f59d9a19784ac1d7b235cba14/midnight-commander/macos_subshell_fix.diff"
+        sha256 "0925196ebbadc809454a004e83540d1b81e8497c47c5ac0d02d5e7ea375b3bcf"
+      end
+    end
+  end
+
   def install
     args = %W[
       --disable-debug
